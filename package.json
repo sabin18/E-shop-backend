@@ -13,7 +13,7 @@
     "migrate": "SET NODE_ENV=test && npx sequelize db:migrate",
     "rollback": "SET NODE_ENV=test && npx sequelize db:migrate:undo:all",
     "seed": "SET NODE_ENV=test && npx sequelize db:seed:all",
-    "test": "npm run test-suite",
+    "test": "npm run rollback &&  npm run migrate && npm run seed &&  npm run test-suite",
     "test-suite": "SET NODE_ENV=test && nyc --reporter=html --reporter=text mocha src/tests/index.spec.js --require @babel/register --timeout 20000 --exit",
     "coveralls": "nyc report --reporter=text-lcov| coveralls",
     "localbuild": "babel src --out-dir lib --copy-files --source-maps --watch"
@@ -64,6 +64,7 @@
     "underscore": "^1.10.2"
   },
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",

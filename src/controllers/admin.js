@@ -1,10 +1,13 @@
+import models from '../database/models'
+import responseUtil from '../Utils/responseUtil'
 
+
+const { ErrorResponse, response } = responseUtil;
 class AdminController {
-static GetAllusers(req,res){
-    res.status(200).json({
-      status: 200,
-      message: 'all users!',
-    });
+static  async GetAllusers(req,res){
+   const users = await models.Users.findAll({ 
+    })
+   return response (res,200,'',users)
 }
 }
 
