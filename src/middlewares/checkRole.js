@@ -1,0 +1,17 @@
+import responseUtil from '../Utils/responseUtil'
+import strings from '../Utils/strings'
+
+const { ErrorResponse } = responseUtil;
+
+const adminRole = (req,res,next) =>{
+console.log(req.user.payload);
+ const { role } = req.user.payload;
+
+ if (role!=1){
+
+    return  ErrorResponse(res,403,strings.users.error.AUTHORIZED);
+ }
+return next();
+}
+
+export default adminRole;
