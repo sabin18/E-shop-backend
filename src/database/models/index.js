@@ -6,7 +6,7 @@ import conf from '../config';
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = conf.development;
+const config = conf[env];
 
 const db = {};
 
