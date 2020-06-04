@@ -6,17 +6,19 @@
   "scripts": {
     "dev": "SET NODE_ENV=development & babel-watch src/index.js",
     "production": "npm run db:migrate && NODE_ENV=production babel src --out-dir build --copy-files && node build/index.js",
-    "lint": "eslint . --ext .js",
-    "db:refresh": "SET NODE_ENV=production && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all",
-    "db:seed": "SET NODE_ENV=production && npx sequelize db:seed:all",
-    "db:migrate": "SET NODE_ENV=production && npx sequelize db:migrate",
-    "migrate": "SET NODE_ENV=test && npx sequelize db:migrate",
-    "rollback": "SET NODE_ENV=test && npx sequelize db:migrate:undo:all",
-    "seed": "SET NODE_ENV=test && npx sequelize db:seed:all",
-    "test": "npm run rollback &&  npm run migrate && npm run seed &&  npm run test-suite",
+    "seed": "node_modules/.bin/sequelize db:seed:all",
+    "migrate": "node_modules/.bin/sequelize db:migrate",
+    "seed:undo": "node_modules/.bin/sequelize db:seed:undo:all",
+    "migrate:undo": "node_modules/.bin/sequelize db:migrate:undo:all",
+    "db:refresh": "npm run migrate:undo && npm run migrate && npm run seed",
+    "migrate:test": "SET echo $NODE_ENV=test && npm run migrate",
+    "seed:test": "echo $NODE_ENV=test && npm run seed",
+    "rollback": "echo $NODE_ENV=test && npm run migrate:undo",
+    "test": "npm run test-suite",
     "test-suite": "SET NODE_ENV=test && nyc --reporter=html --reporter=text mocha src/tests/index.spec.js --require @babel/register --timeout 20000 --exit",
     "coveralls": "nyc report --reporter=text-lcov| coveralls",
-    "localbuild": "babel src --out-dir lib --copy-files --source-maps --watch"
+    "localbuild": "babel src --out-dir lib --copy-files --source-maps --watch",
+    "lint": "eslint . --ext .js"
   },
   "nyc": {
     "exclude": [
@@ -64,7 +66,6 @@
     "underscore": "^1.10.2"
   },
   "dependencies": {
-    "bcrypt": "^4.0.1",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",

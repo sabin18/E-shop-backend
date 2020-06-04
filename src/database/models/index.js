@@ -4,9 +4,20 @@ import path from 'path';
 import Sequelize from 'sequelize';
 import conf from '../config';
 
+const checkEnv = (env) => {
+
+if (env === 'development '){
+  return 'development';
+}
+if (env === 'test ')  {
+return 'test';
+}
+ return 'production';
+}
+
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = conf.development;
+const env = checkEnv(process.env.NODE_ENV);
+const config = conf[env];
 
 const db = {};
 
