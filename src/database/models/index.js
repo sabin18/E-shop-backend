@@ -18,7 +18,6 @@ return 'test';
 const basename = path.basename(__filename);
 const env = checkEnv(process.env.NODE_ENV);
 const config = conf[env];
-console.log('======>',config);
 
 const db = {};
 
