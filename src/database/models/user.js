@@ -16,7 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.belongsTo(models.roles, {
+      as: 'roles',
+      foreignKey: 'role',
+      targetKey: 'id',
+    });
   };
   return User;
 };

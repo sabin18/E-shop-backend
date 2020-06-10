@@ -5,7 +5,6 @@ module.exports = {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     logging: false,
-    seederStorage: 'sequelize',
   },
   test: {
     use_env_variable: 'TEST_DB',
@@ -16,6 +15,5 @@ module.exports = {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
     logging: false,
-    seederStorage: 'sequelize',
   }
 };
