@@ -10,17 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    role: DataTypes.INTEGER,
+    role: {
+      type: DataTypes.ENUM('admin', 'owner', 'cashier', 'manager'),
+      allowNull: false
+    },
     businessId: DataTypes.INTEGER,
     isVerified: DataTypes.BOOLEAN,
     image: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.belongsTo(models.roles, {
-      as: 'roles',
-      foreignKey: 'role',
-      targetKey: 'id',
-    });
+    // Association goes here
   };
   return User;
 };

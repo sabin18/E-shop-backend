@@ -8,7 +8,7 @@ module.exports = {
       lastName: 'Doe',
       email: 'admin@gmail.com',
       password:'$2b$10$VyldWKIyiuVSqZYjmz4u8OepsFJFKzQipOQzhrhQKthgn8a9OI2Au',
-      role:1,
+      role:'admin',
       businessId:1,
       isVerified: true,
       image:'',
