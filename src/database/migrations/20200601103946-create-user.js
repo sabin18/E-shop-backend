@@ -23,7 +23,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       role: {
-        type: Sequelize.INTEGER
+        type: Sequelize.ENUM('admin', 'owner', 'cashier', 'manager'),
+        allowNull: false
       },
       businessId: {
         type: Sequelize.INTEGER
