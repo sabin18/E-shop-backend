@@ -31,6 +31,12 @@ module.exports = {
       isVerified: {
         type: Sequelize.BOOLEAN
       },
+      phoneNumber: {
+        type: Sequelize.STRING,
+      },
+      ID: {
+        type: Sequelize.STRING,
+      },
       image: {
         type: Sequelize.STRING
       },

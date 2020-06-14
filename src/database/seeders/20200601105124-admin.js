@@ -11,6 +11,8 @@ module.exports = {
       role:1,
       businessId:1,
       isVerified: true,
+      phoneNumber:7863123,
+      ID:12373676,
       image:'',
       createdAt: new Date(),
       updatedAt: new Date()

@@ -1,6 +1,6 @@
 import Router from 'express';
 import usersRoutes from './user';
-import rolesRoutes from './roles';
+import rolesRoutes from './admin';
 
 const router = new Router();
 

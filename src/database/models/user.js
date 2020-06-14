@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.INTEGER,
     businessId: DataTypes.INTEGER,
     isVerified: DataTypes.BOOLEAN,
+    phoneNumber:DataTypes.STRING,
+    ID:DataTypes.STRING,
     image: DataTypes.STRING
   }, {});
   User.associate = function(models) {

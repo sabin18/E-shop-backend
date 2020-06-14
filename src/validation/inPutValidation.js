@@ -19,8 +19,26 @@ class Inputvalidation {
 static validateLogin(req, res, next) {
     const schema = Joi.object({
       email: Joi.string().email({ minDomainSegments: 2 }).message('email field should be a valid email address. e.g: johndoe@gmail.com.').required(),
-      password: Joi.required(),
+      password: Joi.required(),  
+
     });
+    validation(req, res, schema, next);
+  }
+  static validateAddUser(req, res, next) {
+    const schema = Joi.object({
+      firstName: Joi.string().trim().min(3).max(50)
+        .message('Name should be at least 3 character and not more than 50 characters!')
+        .required(),
+      lastName: Joi.string().trim().min(3).max(50)
+        .message('Name should be at least 3 character and not more than 50 characters!')
+        .required(),
+      email: Joi.string().email({ minDomainSegments: 2 }).message('email field should be a valid email address. e.g: johndoe@gmail.com.').required(),
+      password: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/).message('password field should contain at least 6 characters, at least 1 lowercase, 1 uppercase and 1 number and a special character.').required(),
+      ID: Joi.string().regex(/^\s*-?[0-9]{16,16}\s*$/).message('ID should be 16 numbers!').required(),
+      phoneNumber:Joi.string().regex(/^\s*-?[0-9]{10,10}\s*$/).message('phoneNumber should be 10 numbers').required(),
+      role: Joi.number().integer().required(),     
+    });
+
     validation(req, res, schema, next);
   }
 }
