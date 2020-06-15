@@ -1,3 +1,5 @@
-import defautTests from './admin.spec';
+import AdminTests from './admin.spec';
+import authTest from './auth.spec'
 
-describe('Default Test', defautTests);
+
+describe('Admin Test', AdminTests);

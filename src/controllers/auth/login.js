@@ -16,7 +16,7 @@ static async Login (req, res) {
 
     }
     if (user.isVerified === false) {
-      return responseError(res, 400, strings.users.error.UNVERIFIED);
+      return ErrorResponse(res, 400, strings.users.error.UNVERIFIED);
     }
 
     const checkpassword = bcrypt.compareSync(password, user.password);

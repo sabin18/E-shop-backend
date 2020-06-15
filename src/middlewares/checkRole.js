@@ -4,7 +4,6 @@ import strings from '../Utils/strings'
 const { ErrorResponse } = responseUtil;
 
 const adminRole = (req,res,next) =>{
-console.log(req.user.payload);
  const { role } = req.user.payload;
 
  if (role!=1){
