@@ -41,6 +41,17 @@ static validateLogin(req, res, next) {
 
     validation(req, res, schema, next);
   }
+
+  static validateCreateBusiness(req, res, next) {
+    const schema = Joi.object({
+      name: Joi.string().min(3).max(250).message('username field should be at least 3 alphanumeric characters long.')
+      .required(),
+      businessType: Joi.string().required().valid('ownerBusiness', 'Small Shop', 'Big shop', 'Restaurant', 'Hotel'),
+      ownerEmail: Joi.string().email({ minDomainSegments: 2 }).message('email field should be a valid email address. e.g: johndoe@gmail.com.').required(),     
+    });
+
+    validation(req, res, schema, next);
+  }
 }
 
 export default Inputvalidation
