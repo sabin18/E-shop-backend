@@ -14,6 +14,16 @@ const strings ={
         SIGN_IN_FIRST: 'Please sign into the application first',
         USER_ALREADY_FOUND:'user with that ID or email already exist',
         }
+    },
+
+
+    business:{
+        success:{
+
+        },
+        error:{
+            BUSINESS_EXIT:'business with this name already exist',
+        }
     }
 }
 
