@@ -8,7 +8,7 @@ import strings from '../Utils/strings'
 chai.should();
 chai.use(chaiHttp);
 
-describe('admin Test',()=>{
+describe('auth Test',()=>{
 it('user should be able to login', done => {
     chai.request(app)
       .post('/api/v1/auth/login')

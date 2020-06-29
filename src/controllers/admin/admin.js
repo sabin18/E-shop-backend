@@ -28,7 +28,7 @@ static async AddUser(req,res) {
       email:email,
       password:hashPassword(password),
       role:role,
-      bussinessId:'',
+      isActive:true,
       isVerified:false,
       phoneNumber:phoneNumber,
       ID:ID,

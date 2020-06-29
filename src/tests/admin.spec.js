@@ -51,8 +51,7 @@ it('admin should not add new  user with aunothorized token', done => {
     .set('Authorization', `Bearer ${invalidToken}`)
     .send(user)
     .end((error, res) => {
-      console.log(res.body)
-       res.should.have.property('status').eql(401);
+      res.should.have.property('status').eql(401);
       res.body.should.have.property('Error').eql(strings.users.error.UNABLE_TO_PROCESS);
       done();
 });

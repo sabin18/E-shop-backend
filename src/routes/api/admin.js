@@ -3,7 +3,7 @@ import RolesController from '../../controllers/roles/roles';
 import AdminController from '../../controllers/admin/admin';
 import BusinessController from '../../controllers/business/business';
 import checkToken from '../../middlewares/checkToken'
-import adminRole from '../../middlewares/checkRole'
+import checkRole from '../../middlewares/checkRole'
 import InPutValidation from '../../validation/inPutValidation'
 
 
@@ -19,8 +19,8 @@ const {
 const { GetRoles } = RolesController;
 const router = express.Router();
 router.get('/roles', checkToken ,GetRoles);
-router.get('/users', checkToken ,adminRole,GetAllusers);
-router.post('/users', checkToken ,adminRole,validateAddUser,AddUser);
-router.post('/business', checkToken ,adminRole,validateCreateBusiness,createBusiness);
+router.get('/users', checkToken ,checkRole.adminRole,GetAllusers);
+router.post('/users', checkToken ,checkRole.adminRole,validateAddUser,AddUser);
+router.post('/business', checkToken ,checkRole.adminRole,validateCreateBusiness,createBusiness);
 
 export default router;

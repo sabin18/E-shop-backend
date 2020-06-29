@@ -9,14 +9,29 @@ module.exports = {
       email: 'admin@gmail.com',
       password:'$2b$10$VyldWKIyiuVSqZYjmz4u8OepsFJFKzQipOQzhrhQKthgn8a9OI2Au',
       role:1,
-      businessId:1,
       isVerified: true,
       phoneNumber:7863123,
       ID:12373676,
       image:'',
       createdAt: new Date(),
       updatedAt: new Date()
-    }]);
+    },
+    {
+    id:'6d4a21d6-f16b-4c26-9db0-acd29bdd4d20',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'user10@gmail.com',
+    password:'$2b$10$VyldWKIyiuVSqZYjmz4u8OepsFJFKzQipOQzhrhQKthgn8a9OI2Au',
+    role:2,
+    isVerified: true,
+    phoneNumber:7863123,
+    ID:12373676,
+    image:'',
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+  
+  ]);
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('Users', null, {});
