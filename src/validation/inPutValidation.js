@@ -44,13 +44,24 @@ static validateLogin(req, res, next) {
 
   static validateCreateBusiness(req, res, next) {
     const schema = Joi.object({
-      name: Joi.string().min(3).max(250).message('username field should be at least 3 alphanumeric characters long.')
+      name: Joi.string().min(3).max(30).message('username field should be at least 3 alphanumeric characters long.')
       .required(),
       businessType: Joi.string().required().valid('ownerBusiness', 'Small Shop', 'Big shop', 'Restaurant', 'Hotel'),
       ownerEmail: Joi.string().email({ minDomainSegments: 2 }).message('email field should be a valid email address. e.g: johndoe@gmail.com.').required(),     
     });
-
     validation(req, res, schema, next);
+  }
+    static validateAddProduct(req, res, next) {
+      const schema = Joi.object({
+        name: Joi.string().min(3).max(250).message('name field should be at least 3 alphanumeric characters long.')
+        .required(),
+        price: Joi.number().integer().min(1).required(),
+        isQuantitify: Joi.boolean().required(), 
+        quantity:Joi.number().integer().min(0).required(),
+        expiryDate: Joi.string().regex(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/).message('expiryDate format must be YYYY-MM-DD'),    
+      });
+      validation(req, res, schema, next);
+   
   }
 }
 

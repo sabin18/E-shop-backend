@@ -25,8 +25,8 @@ module.exports = {
       role: {
         type: Sequelize.INTEGER
       },
-      businessId: {
-        type: Sequelize.INTEGER
+      isActive:{
+        type: Sequelize.BOOLEAN
       },
       isVerified: {
         type: Sequelize.BOOLEAN

@@ -22,7 +22,6 @@ it('admin should add business', done => {
       .send(businessData.validData)
      
       .end((error, res) => {
-         console.log('res========>',res.body)
          res.should.have.property('status').eql(200);
         done();
 });

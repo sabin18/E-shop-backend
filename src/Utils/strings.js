@@ -19,10 +19,23 @@ const strings ={
 
     business:{
         success:{
+            BUSINESS_ADDED:'business created successfully',
 
         },
         error:{
             BUSINESS_EXIT:'business with this name already exist',
+            NO_ACCESS:"you don't have access to this business",
+            BUSINESS_NOT_EXIST:"Business doesn't exist"
+        }
+    },
+
+    product:{
+        success:{
+         PRODUCT_CREATED:'product created succefully',
+        },
+        error:{
+            PRODUCT_EXIT:'product with this name already exist',
+            // NO_ACCESS:"you don't have access to this business",
         }
     }
 }

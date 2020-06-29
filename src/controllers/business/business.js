@@ -11,7 +11,7 @@ class BusinessController {
 static async createBusiness(req,res) {
 const {name,businessType,ownerEmail}=req.body;
 
-const business = await models.business.findOne({where:{name}})
+const business = await models.business.findOne({where:{name}});
 const user = await models.Users.findOne({ where:{email:ownerEmail}});
 
 if (!user){
@@ -29,7 +29,7 @@ const newBusiness = await models.business.create({
     owner:user.id,
     isPaid:false,
  })
- return response (res,200,strings.users.success.USER_ADDED,newBusiness)
+ return response (res,200,strings.business.success.BUSINESS_ADDED,newBusiness)
 }
     
 }

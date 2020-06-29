@@ -28,7 +28,6 @@ static async Login (req, res) {
       userId:user.id,
       FirstName:user.FirstName,
       email:user.email,
-      business: user.businessId,
       role:user.role,
       token:userToken
   };
