@@ -4,7 +4,7 @@ const productData={
       name: 'Cake',
       price: 100,
       isQuantitify:true,
-      quantity:3,
+      quantity:100,
       expiryDate:'2020-09-12'
     }, 
 

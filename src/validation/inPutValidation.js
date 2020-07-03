@@ -63,6 +63,14 @@ static validateLogin(req, res, next) {
       validation(req, res, schema, next);
    
   }
+  static validateAddSales(req, res, next) {
+    const schema = Joi.object({
+      product: Joi.number().integer().min(1).required(),
+      quantity:Joi.number().integer().min(1).required(),
+    });
+    validation(req, res, schema, next);
+ 
+}
 }
 
 export default Inputvalidation
