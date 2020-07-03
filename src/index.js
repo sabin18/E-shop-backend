@@ -27,7 +27,8 @@ app.use((req, res, next) => {
       next();
     }
   });
-http.listen(port, () => console.log(`E-shop is runnig server on port ${port}...`));
+
+http.listen(port, () => {console.log(`E-shop is runnig server on port ${port}...`)});
 
 app.use('/', allRoutes);
 
