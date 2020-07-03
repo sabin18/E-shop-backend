@@ -31,10 +31,10 @@ class SalesController {
            return  ErrorResponse(res,404,strings.product.error.PRODUCT_NOT_FOUND)
         }
         if (cart){
-            return  ErrorResponse(res,409,strings.product.error.CART_ARLEARDY_EXIST)
+            return  ErrorResponse(res,409,strings.sales.error.CART_ARLEARDY_EXIST)
          }
         if(checkProduct.quantity<quantity){
-            return  ErrorResponse(res,400,strings.product.error.QUANTITY_ERROR)
+            return  ErrorResponse(res,400,strings.sales.error.QUANTITY_ERROR)
         }
         const newCart = await models.cart.bulkCreate(cartData);
          return response (res,201,strings.sales.success.SALES_CREATED,newCart);
@@ -62,7 +62,7 @@ const salesData=[{
 }];
 
 if(checkProduct.quantity<quantity){
-    return  ErrorResponse(res,400,strings.product.error.QUANTITY_ERROR)
+    return  ErrorResponse(res,400,strings.sales.error.QUANTITY_ERROR)
 }
 const newQuantiy =checkProduct.quantity-quantity;
 await models.products.update({ quantity: newQuantiy },{where:{id:product}});
