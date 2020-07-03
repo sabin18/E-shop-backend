@@ -10,7 +10,6 @@ import strings from '../Utils/strings'
 chai.should();
 chai.use(chaiHttp);
 const userToken = generateToken(userData.userData1);
-const aunothorizedToken = generateToken(userData.adminData);
 const invalidToken ='bvnvnvnvnvnv';
 
 describe('sales Test',()=>{
