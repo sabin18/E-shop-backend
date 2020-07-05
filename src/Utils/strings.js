@@ -25,7 +25,7 @@ const strings ={
         error:{
             BUSINESS_EXIT:'business with this name already exist',
             NO_ACCESS:"you don't have access to this business",
-            BUSINESS_NOT_EXIST:"Business doesn't exist"
+            BUSINESS_NOT_EXIST:"Business doesn't exist",
         }
     },
 
@@ -47,6 +47,15 @@ const strings ={
             QUANTITY_ERROR:"the quantity is greater than the one in stock",
             CART_ARLEARDY_EXIST:'you have already added this product on the list'
         }
+    },
+
+        payment:{
+            success:{
+             PAYMENT_CREATED:'payment saved succefully',
+            },
+            error:{
+            NO_SUBCRIPTION:"Your subcription has ended,Please contact service provider to renew your subcription"
+            }  
     }
 }
 
