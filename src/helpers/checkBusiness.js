@@ -21,7 +21,7 @@ const employee = await models.employees.findOne({ where:{ [Op.and]: [{userId:id}
  }
 
  if (business.isPaid===false){
-  return  ErrorResponse(res,403,strings.payment.error.NO_SUBCRIPTION);
+  return  ErrorResponse(res,403,strings.payment.error.NO_SUBSCRIPTION);
  }
  
 }

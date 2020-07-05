@@ -54,7 +54,7 @@ const strings ={
              PAYMENT_CREATED:'payment saved succefully',
             },
             error:{
-            NO_SUBCRIPTION:"Your subcription has ended,Please contact service provider to renew your subcription"
+            NO_SUBSCRIPTION:"Your subscription has ended,Please contact service provider to renew your subscription"
             }  
     }
 }
