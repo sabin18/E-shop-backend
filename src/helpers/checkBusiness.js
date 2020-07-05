@@ -19,6 +19,10 @@ const employee = await models.employees.findOne({ where:{ [Op.and]: [{userId:id}
  if (business.owner != id && !employee){
   return  ErrorResponse(res,403,strings.business.error.NO_ACCESS);
  }
+
+ if (business.isPaid===false){
+  return  ErrorResponse(res,403,strings.payment.error.NO_SUBSCRIPTION);
+ }
  
 }
 

@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     isPaid: DataTypes.BOOLEAN
   }, {});
   business.associate = function(models) {
-    // associations can be defined here
+    business.belongsTo(models.payment, {
+      as: 'payments',
+      foreignKey: 'payment',
+      targetKey: 'id',
+    });
   };
   return business;
 };

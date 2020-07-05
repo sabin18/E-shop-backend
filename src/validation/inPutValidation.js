@@ -71,6 +71,14 @@ static validateLogin(req, res, next) {
     validation(req, res, schema, next);
  
 }
+static validateAddPayment(req, res, next) {
+  const schema = Joi.object({
+    period: Joi.number().integer().min(1).required(),
+    price:Joi.number().integer().min(1).required(),
+  });
+  validation(req, res, schema, next);
+
+}
 }
 
 export default Inputvalidation

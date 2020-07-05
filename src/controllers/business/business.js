@@ -31,6 +31,14 @@ const newBusiness = await models.business.create({
  })
  return response (res,200,strings.business.success.BUSINESS_ADDED,newBusiness)
 }
+
+static  async GetAllBusiness(req,res){
+   const business = await models.business.findAll({
+   attributes: { exclude: ['payment'] },
+   include: [{ association: 'payments', attributes: ['amount','payDate','expiryDate','period'] }],
+    })
+   return response (res,200,'',business)
+}
     
 }
 

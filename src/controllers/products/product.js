@@ -13,7 +13,6 @@ class ProductController {
 static async addProduct(req,res) {
 const {name,price,isQuantitify,quantity,expiryDate}=req.body;
 const Quantity=isQuantitify==='false'?0:quantity
-// console.log(isQuantitify);
 const  { businessID } = req.params;
 
 await isMyBusiness(req,res);
