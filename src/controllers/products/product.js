@@ -22,7 +22,7 @@ const checkProduct = await models.products.findOne({ where:{ [Op.and]: [{name}, 
 if (checkProduct){
    return  ErrorResponse(res,409,strings.product.error.PRODUCT_EXIT)
 }
-
+console.log('=======>insert');
 const newProduct = await models.products.create({
     name:name,
     price:price,

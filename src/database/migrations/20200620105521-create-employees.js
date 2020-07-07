@@ -14,6 +14,9 @@ module.exports = {
       businessId: {
         type: Sequelize.UUID
       },
+      isActive: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -6,6 +6,7 @@ import PaymentController from '../../controllers/payments/payment'
 import checkToken from '../../middlewares/checkToken'
 import checkRole from '../../middlewares/checkRole'
 import InPutValidation from '../../validation/inPutValidation'
+import checkId from '../../helpers/checkId'
 
 
 const { validateAddUser,validateCreateBusiness,validateAddPayment } = InPutValidation;
@@ -27,7 +28,7 @@ router.get('/roles', checkToken ,GetRoles);
 router.get('/users', checkToken ,checkRole.adminRole,GetAllusers);
 router.post('/users', checkToken ,checkRole.adminRole,validateAddUser,AddUser);
 router.post('/business', checkToken ,checkRole.adminRole,validateCreateBusiness,createBusiness);
-router.post('/payment/:businessID', checkToken ,checkRole.adminRole,validateAddPayment,addPayment);
+router.post('/payment/:businessID', checkToken,checkId ,checkRole.adminRole,validateAddPayment,addPayment);
 router.get('/business',checkToken ,checkRole.adminRole,GetAllBusiness)
 
 export default router;

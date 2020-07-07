@@ -2,13 +2,13 @@ import models from '../database/models'
 import responseUtil from '../Utils/responseUtil'
 import strings from '../Utils/strings'
 import { Op } from 'sequelize';
-
+import isPayed from './checkPayement'
 const { ErrorResponse } = responseUtil;
 
 const isMyBusiness = async (req,res)  =>{
 const { id } = req.user.payload;
 const { businessID } = req.params;
-
+await isPayed(req,res)
 const business = await models.business.findOne({where:{id:businessID}});
 const employee = await models.employees.findOne({ where:{ [Op.and]: [{userId:id}, {businessId:businessID}]}});
 

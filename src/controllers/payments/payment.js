@@ -17,9 +17,9 @@ const  { businessID } = req.params;
 const {id}=req.user.payload;
 const payedDate=moment().format('YYYY-MM-DD HH:mm:ss');
 const expiryDate=moment(payedDate).add(period,'month').format('YYYY-MM-DD HH:mm:ss');
-const business = await models.business.findOne({where:{id:businessID}});
+const payingBusiness = await models.business.findOne({where:{id:businessID}})
 
-if(!business){
+if(!payingBusiness){
     return  ErrorResponse(res,404,strings.business.error.BUSINESS_NOT_EXIST);
   }
 const newPayment = await models.payment.create({
