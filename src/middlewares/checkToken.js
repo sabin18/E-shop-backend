@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken';
 import responseUtil from '../Utils/responseUtil'
 import strings from '../Utils/strings'
-import isPayed from '../helpers/checkPayement'
-
 
 const { ErrorResponse } = responseUtil;
 
@@ -16,7 +14,6 @@ export default async (req, res, next) => {
   try {
     const verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
     req.user = verifiedUser;
-    isPayed(req,res)
     return next();
   } catch (error) {
     return ErrorResponse(
