@@ -5,6 +5,8 @@ import productTest from './product.spec'
 import salesTest from './sales.spec'
 import paymentTest from './payment.spec'
 import employeeTest from './employee.spec'
+import creditTest from './credits.spec'
+import debitsTest from './debits.spec'
 
 
 describe('Admin Test', AdminTests);
@@ -13,4 +15,6 @@ describe('business Test', businessTest);
 describe('product Test', productTest);
 describe('sales Test', salesTest);
 describe ('payment Test',paymentTest);
-describe ('employee Test',employeeTest)
+describe ('employee Test',employeeTest);
+describe ('creditTest',creditTest)
+describe ('debitsTest',debitsTest)

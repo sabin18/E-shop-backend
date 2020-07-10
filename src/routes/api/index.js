@@ -3,7 +3,9 @@ import usersRoutes from './user';
 import rolesRoutes from './admin';
 import productsRoutes from './products';
 import salesRoutes from './sales';
-import employeeRoutes from'./employee'
+import employeeRoutes from './employee'
+import creditsRoutes from './credits'
+import debitsRoutes from './debits'
 
 const router = new Router();
 
@@ -12,5 +14,7 @@ router.use('/admin', rolesRoutes);
 router.use('/products', productsRoutes);
 router.use('/sales', salesRoutes);
 router.use('/employee', employeeRoutes);
+router.use('/credits', creditsRoutes);
+router.use('/debits', debitsRoutes);
 
 export default router;

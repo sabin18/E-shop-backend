@@ -19,13 +19,16 @@ static  async GetAllEmployees(req,res){
 }
 
 static  async GetOneEmployee(req,res){
-    const  { businessID} = req.params;
-    const  {user} =req.body;
+    const  { businessID,user} = req.params;
     await isMyBusiness(req,res);
-    const users = await models.employees.findOne({ where:{[Op.or]:[{businessId:businessID},{userId:user}]},
+    const users = await models.employees.findOne({ where:{[Op.and]:[{businessId:businessID},{userId:user}]},
     attributes: {exclude: ['userId', 'businessId',]},
     include: [{ association: 'user',attributes: { exclude: ['password','role','createdAt','updatedAt'] },include: [{ association: 'roles', attributes: ['name'] }] },{ association: 'business', attributes: ['name'] }],
     })
+
+   if(!users){
+      return  ErrorResponse(res,404,strings.users.error.USER_NOT_EXIST);
+   } 
    return response (res,200,'',users)
 }
 

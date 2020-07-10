@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const employees = sequelize.define('employees', {
-    userId: DataTypes.UUID,
+    userId: DataTypes.INTEGER,
     businessId: DataTypes.UUID,
     isActive:DataTypes.BOOLEAN
   }, {});

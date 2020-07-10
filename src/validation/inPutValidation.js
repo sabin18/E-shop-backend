@@ -80,13 +80,17 @@ static validateAddPayment(req, res, next) {
   
 }
 
-// static validateId(req, res, next) {
-//   const schema = Joi.object({
-//     businessID: Joi.string().regex(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i).message('You are using invalid id'),
-//   });
-//   validation(req, res, schema, next);
+static validateCredits(req, res, next) {
+  const schema = Joi.object({
+    name: Joi.string().min(3).max(50)
+    .required(),
+    reason: Joi.string().min(3).max(50)
+    .required(),
+    amount: Joi.number().integer().min(1).required(),
+  });
+  validation(req, res, schema, next);
   
-// }
+}
 
 }
 
