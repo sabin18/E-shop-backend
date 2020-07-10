@@ -6,7 +6,8 @@ const strings ={
             },
 
         error:{
-        USER_NOT_FOUND:'can not find user with that email',  
+        USER_NOT_FOUND:'can not find user with that email',
+        USER_NOT_EXIST:'can not find user',  
         INCORRECT_PASSWORD:'incorrect password',
         UNVERIFIED: 'You are not verified ,verify first!',
         AUTHORIZED:`You don't have access to this page`,
@@ -56,7 +57,23 @@ const strings ={
             error:{
             NO_SUBSCRIPTION:"Your subscription has ended,Please contact service provider to renew your subscription"
             }  
-    }
+    },
+    credit:{
+        success:{
+         CREDIT_CREATED:'credit saved succefully',
+        },
+        error:{
+         CREDIT_NOT_FOUND:'can not find  that credit',
+        }  
+   },
+   debits:{
+    success:{
+     DEBIT_CREATED:'debit saved succefully',
+    },
+    error:{
+     DEBIT_NOT_FOUND:'can not find  that debit',
+    }  
+}
 }
 
 export default strings
