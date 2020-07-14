@@ -15,7 +15,7 @@ const {
     GetAllusers,AddUser,
    } = AdminController;
    const {
-    createBusiness,GetAllBusiness
+    createBusiness,GetAllBusiness,GetOneBusiness
    } = BusinessController;
 
    const {
@@ -29,6 +29,7 @@ router.get('/users', checkToken ,checkRole.adminRole,GetAllusers);
 router.post('/users', checkToken ,checkRole.adminRole,validateAddUser,AddUser);
 router.post('/business', checkToken ,checkRole.adminRole,validateCreateBusiness,createBusiness);
 router.post('/payment/:businessID', checkToken,checkId ,checkRole.adminRole,validateAddPayment,addPayment);
-router.get('/business',checkToken ,checkRole.adminRole,GetAllBusiness)
+router.get('/business',checkToken ,checkRole.adminRole,GetAllBusiness);
+router.get('/business/:businessID',checkToken,checkId,checkRole.adminRole,GetOneBusiness)
 
 export default router;

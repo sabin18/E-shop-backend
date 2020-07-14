@@ -1,6 +1,8 @@
 import models from '../../database/models'
 import responseUtil from '../../Utils/responseUtil'
 import strings from '../../Utils/strings'
+import isMyBusiness from '../../helpers/checkBusiness'
+import AllMyBusiness from '../../helpers/AllMyBusiness'
 
 
 const { ErrorResponse, response } = responseUtil;
@@ -34,8 +36,33 @@ const newBusiness = await models.business.create({
 
 static  async GetAllBusiness(req,res){
    const business = await models.business.findAll({
+   attributes: { exclude: ['payment','owner'] },
+   include: [{ association: 'user',attributes: { exclude: ['password','role','createdAt','updatedAt'] }},{ association: 'payments', attributes: ['amount','payDate','expiryDate','period'] }],
+    })
+   return response (res,200,'',business)
+}
+
+static  async GetOneBusiness(req,res){
+   const { businessID }= req.params;
+   const business = await models.business.findOne({where:{id:businessID},
    attributes: { exclude: ['payment'] },
-   include: [{ association: 'payments', attributes: ['amount','payDate','expiryDate','period'] }],
+   include: [{ association: 'user',attributes: { exclude: ['password','role','createdAt','updatedAt'] }},{ association: 'payments', attributes: ['amount','payDate','expiryDate','period'] }],
+    })
+   if(!business) {
+      return  ErrorResponse(res,404,strings.business.error.BUSINESS_NOT_EXIST);  
+   }
+   return response (res,200,'',business)
+}
+static  async GetAllMyBusiness(req,res){
+   await AllMyBusiness(req,res);
+}
+
+static  async GetOneMyBusiness(req,res){
+   const { businessID }= req.params;
+   await isMyBusiness(req,res);
+   const business = await models.business.findOne({where:{id:businessID},
+   attributes: { exclude: ['payment'] },
+   include: [{ association: 'user',attributes: { exclude: ['password','role','createdAt','updatedAt'] }},{ association: 'payments', attributes: ['amount','payDate','expiryDate','period'] }],
     })
    return response (res,200,'',business)
 }

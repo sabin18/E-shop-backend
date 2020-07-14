@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     isPaid: DataTypes.BOOLEAN
   }, {});
   business.associate = function(models) {
+    business.belongsTo(models.Users, {
+      as: 'user',
+      foreignKey: 'owner',
+      targetKey: 'id',
+    });
     business.belongsTo(models.payment, {
       as: 'payments',
       foreignKey: 'payment',

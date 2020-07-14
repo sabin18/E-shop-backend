@@ -3,7 +3,6 @@ import chaiHttp from 'chai-http';
 import app from  '../index';
 import { describe, it } from 'mocha';
 import userData from './mockData/userData'
-import productData from './mockData/productData'
 import generateToken from '../helpers/generateToken';
 import strings from '../Utils/strings'
 

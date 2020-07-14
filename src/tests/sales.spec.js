@@ -36,6 +36,15 @@ it('user should add cart', done => {
 });
 });
 
+it('user should get cart', done => {
+  chai.request(app)
+    .get('/api/v1/sales/list/d08a096f-6536-4507-aeca-f18f8234129f')
+    .set('Authorization', `Bearer ${userToken}`)
+    .end((error, res) => {
+       res.should.have.property('status').eql(200);
+      done();
+});
+});
 it('user should not add cart with missing field', done => {
   chai.request(app)
     .post('/api/v1/sales/list/d08a096f-6536-4507-aeca-f18f8234129f')
@@ -111,6 +120,33 @@ it('user should not add sales with aunothorized token', done => {
       .end((error, res) => {
          res.should.have.property('status').eql(201);
         done();
+});
+}); 
+it('user should get sales', done => {
+  chai.request(app)
+    .get('/api/v1/sales/d08a096f-6536-4507-aeca-f18f8234129f')
+    .set('Authorization', `Bearer ${userToken}`)
+    .end((error, res) => {
+       res.should.have.property('status').eql(200);
+      done();
+});
+}); 
+it('user should get single sales', done => {
+  chai.request(app)
+    .get('/api/v1/sales/d08a096f-6536-4507-aeca-f18f8234129f/a2ebd737-9faf-4996-b75c-f84db8e8fed7')
+    .set('Authorization', `Bearer ${userToken}`)
+    .end((error, res) => {
+       res.should.have.property('status').eql(200);
+      done();
+});
+}); 
+it('user should not get single sales', done => {
+  chai.request(app)
+    .get('/api/v1/sales/d08a096f-6536-4507-aeca-f18f8234129f/d08a096f-6536-4507-aeca-f18f8234129f')
+    .set('Authorization', `Bearer ${userToken}`)
+    .end((error, res) => {
+       res.should.have.property('status').eql(404);
+      done();
 });
 }); 
 });

@@ -8,8 +8,11 @@ import checkId from '../../helpers/checkId'
 
 const { validateAddProduct } = InPutValidation;
 
-const { addProduct } = ProductController;
+const { addProduct,getAllProduct,getOneProduct } = ProductController;
 const router = express.Router();
 router.post ('/:businessID',checkToken,checkId,validateAddProduct,checkRole.managerRole,addProduct);
+router.get ('/:businessID',checkToken,checkId,checkRole.managerRole,getAllProduct);
+router.get ('/:businessID/:id',checkToken,checkId,checkRole.managerRole,getOneProduct);
+
 
 export default router;

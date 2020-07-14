@@ -14,7 +14,21 @@ module.exports = (sequelize, DataTypes) => {
     business: DataTypes.UUID
   }, {});
   sales.associate = function(models) {
-    // associations can be defined here
+    sales.belongsTo(models.products, {
+      as: 'product',
+      foreignKey: 'productId',
+      targetKey: 'id',
+    });
+    sales.belongsTo(models.Users, {
+      as: 'users',
+      foreignKey: 'user',
+      targetKey: 'id',
+    });
+    sales.belongsTo(models.business, {
+      as: 'MyBusiness',
+      foreignKey: 'business',
+      targetKey: 'id',
+    });
   };
   return sales;
 };

@@ -9,7 +9,7 @@ import strings from '../Utils/strings'
 
 chai.should();
 chai.use(chaiHttp);
-// let user=userData.validUser
+const userToken = generateToken(userData.userData1);
 const adminToken = generateToken(userData.adminData);
 const aunothorizedToken = generateToken(userData.validUser);
 const invalidToken ='bvnvnvnvnvnv';
@@ -55,6 +55,61 @@ it('admin should not add new business with the same name', done => {
       .send(businessData.invalidBusiness)
       .end((error, res) => {
          res.should.have.property('status').eql(409);
+        done();
+  });
+  });
+  it('admin should get business', done => {
+    chai.request(app)
+      .get('/api/v1/admin/business')
+      .set('Authorization', `Bearer ${adminToken}`)
+      .end((error, res) => {
+         res.should.have.property('status').eql(200);
+        done();
+  });
+  });
+  it('admin should  get business', done => {
+    chai.request(app)
+      .get('/api/v1/admin/business/d08a096f-6536-4507-aeca-f18f8234129f')
+      .set('Authorization', `Bearer ${adminToken}`)
+      .end((error, res) => {
+         res.should.have.property('status').eql(200);
+        done();
+  });
+  }); 
+  it('admin should not get business', done => {
+    chai.request(app)
+      .get('/api/v1/admin/business/d08a096f-6536-4507-aeca-f18f8234128f')
+      .set('Authorization', `Bearer ${adminToken}`)
+      .end((error, res) => {
+         res.should.have.property('status').eql(404);
+        done();
+  });
+  });
+  it('user should get his business', done => {
+    chai.request(app)
+      .get('/api/v1/business')
+      .set('Authorization', `Bearer ${userToken}`)
+      .end((error, res) => {
+         res.should.have.property('status').eql(200);
+        done();
+  });
+  });
+  it('user should get his business', done => {
+    chai.request(app)
+      .get('/api/v1/business/d08a096f-6536-4507-aeca-f18f8234129f')
+      .set('Authorization', `Bearer ${userToken}`)
+      .end((error, res) => {
+         res.should.have.property('status').eql(200);
+        done();
+  });
+  }); 
+
+  it('admin should not get business', done => {
+    chai.request(app)
+      .get('/api/v1/business/d08a096f-6536-4507-aeca-f18f8234128f')
+      .set('Authorization', `Bearer ${userToken}`)
+      .end((error, res) => {
+         res.should.have.property('status').eql(404);
         done();
   });
   });
