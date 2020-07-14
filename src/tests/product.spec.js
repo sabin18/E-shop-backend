@@ -46,6 +46,34 @@ it('user should not add product with the same name', done => {
         done();
   });
   });
+  it('user should get product ', done => {
+    chai.request(app)
+      .get('/api/v1/products/d08a096f-6536-4507-aeca-f18f8234129f')
+      .set('Authorization', `Bearer ${userToken}`)
+      .end((error, res) => {
+        console.log(res.body);
+         res.should.have.property('status').eql(200);
+        done();
+  });
+  });
+  it('user shoulds single get product ', done => {
+    chai.request(app)
+      .get('/api/v1/products/d08a096f-6536-4507-aeca-f18f8234129f/1')
+      .set('Authorization', `Bearer ${userToken}`)
+      .end((error, res) => {
+         res.should.have.property('status').eql(200);
+        done();
+  });
+  });
+  it('user should not single get product', done => {
+    chai.request(app)
+      .get('/api/v1/products/d08a096f-6536-4507-aeca-f18f8234129f/78889')
+      .set('Authorization', `Bearer ${userToken}`)
+      .end((error, res) => {
+         res.should.have.property('status').eql(404);
+        done();
+  });
+  });  
 it('user should not add product with aunothorized token', done => {
   chai.request(app)
     .post('/api/v1/products/d08a096f-6536-4507-aeca-f18f8234129f')

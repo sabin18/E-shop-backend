@@ -9,7 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     expiryDate: DataTypes.DATE
   }, {});
   products.associate = function(models) {
-    // associations can be defined here
+    products.belongsTo(models.business, {
+      as: 'MyBusiness',
+      foreignKey: 'business',
+      targetKey: 'id',
+    });
   };
   return products;
 };

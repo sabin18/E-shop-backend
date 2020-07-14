@@ -6,8 +6,6 @@ import { Op } from 'sequelize';
 
 
 const { ErrorResponse, response } = responseUtil;
-
-
 class ProductController {
 
 static async addProduct(req,res) {
@@ -33,7 +31,36 @@ const newProduct = await models.products.create({
  })
  return response (res,200,strings.product.success.PRODUCT_CREATED,newProduct);
 }
-    
+static async getAllProduct(req,res) {
+   const  { businessID,id } = req.params;
+   
+   await isMyBusiness(req,res);
+   
+   const Product = await models.products.findAll({where:{business:businessID},
+      attributes: { exclude: ['business'] },
+      include: [{  association: 'MyBusiness', attributes: ['name'] }],
+   
+   });
+    return response (res,200,'',Product);   
+}
+
+static async getOneProduct(req,res) {
+const  { businessID,id } = req.params;
+
+await isMyBusiness(req,res);
+
+const Product = await models.products.findOne({ where:{ [Op.and]: [{id}, {business:businessID}]},
+   attributes: { exclude: ['business'] },
+   include: [{  association: 'MyBusiness', attributes: ['name'] }],
+
+});
+
+if (!Product){
+   return  ErrorResponse(res,404,strings.product.error.PRODUCT_NOT_FOUND)
+}
+
+ return response (res,200,'',Product);   
+}
 }
 
 export default ProductController

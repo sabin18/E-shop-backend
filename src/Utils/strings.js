@@ -36,7 +36,7 @@ const strings ={
         },
         error:{
             PRODUCT_EXIT:'product with this name already exist',
-            PRODUCT_NOT_FOUND:"product doesn't exist",
+            PRODUCT_NOT_FOUND:"product not found",
         }
     },
 
@@ -45,12 +45,13 @@ const strings ={
          SALES_CREATED:'sales saved succefully',
         },
         error:{
+            SALES_NOT_FOUND:'sales not found',
             QUANTITY_ERROR:"the quantity is greater than the one in stock",
             CART_ARLEARDY_EXIST:'you have already added this product on the list'
         }
     },
 
-        payment:{
+    payment:{
             success:{
              PAYMENT_CREATED:'payment saved succefully',
             },
