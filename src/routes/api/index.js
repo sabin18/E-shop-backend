@@ -6,7 +6,8 @@ import salesRoutes from './sales';
 import employeeRoutes from './employee'
 import creditsRoutes from './credits'
 import debitsRoutes from './debits'
-import busineasRoutes from './business'
+import businessRoutes from './business'
+import expensesRoutes from './expenses'
 
 const router = new Router();
 
@@ -17,6 +18,8 @@ router.use('/sales', salesRoutes);
 router.use('/employee', employeeRoutes);
 router.use('/credits', creditsRoutes);
 router.use('/debits', debitsRoutes);
-router.use('/business',busineasRoutes);
+router.use('/business',businessRoutes);
+router.use('/expenses',expensesRoutes);
+
 
 export default router;

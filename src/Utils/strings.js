@@ -73,7 +73,15 @@ const strings ={
     },
     error:{
      DEBIT_NOT_FOUND:'can not find  that debit',
-    }  
+    }
+},  
+    expenses:{
+        success:{
+         EXPENSE_CREATED:'expense saved succefully',
+        },
+        error:{
+         EXPENSE_NOT_FOUND:'can not find  that exepense',
+        }  
 }
 }
 

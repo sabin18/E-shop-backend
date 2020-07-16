@@ -94,7 +94,7 @@ it('admin should not add new business with the same name', done => {
         done();
   });
   });
-  it('user should get his business', done => {
+  it('user should get all his business', done => {
     chai.request(app)
       .get('/api/v1/business/d08a096f-6536-4507-aeca-f18f8234129f')
       .set('Authorization', `Bearer ${userToken}`)
@@ -102,7 +102,7 @@ it('admin should not add new business with the same name', done => {
          res.should.have.property('status').eql(200);
         done();
   });
-  }); 
+  });
 
   it('admin should not get business', done => {
     chai.request(app)
