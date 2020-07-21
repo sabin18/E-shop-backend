@@ -14,6 +14,21 @@ const userData={
     updatedAt: '2020-06-03T11:29:03.411Z'
   }, 
 
+  adminData2:{
+    id :'6d4a21d6-f16b-4c26-9db0-acd29bdd4d23',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'user15@gmail.com',
+    password:'$2b$10$VyldWKIyiuVSqZYjmz4u8OepsFJFKzQipOQzhrhQKthgn8a9OI2Au',
+    role:1,
+    isActive:true,
+    isVerified:false,
+    image:'',
+    ID:'1234567897356794',
+    createdAt: '2020-06-03T11:29:03.411Z',
+    updatedAt: '2020-06-03T11:29:03.411Z'
+  }, 
+
   validUser:{
     firstName: 'John',
     lastName: 'Doe',
@@ -23,9 +38,7 @@ const userData={
     phoneNumber:'1234567897',
     ID:'1234567897456794',
   },
-  // singleUser:{
-  //   user:'aa5ded15-9589-4fdb-851b-7dd04cf9c84a'
-  // },
+  
   validUser2:{
     firstName: 'John',
     lastName: 'Doe',
@@ -67,7 +80,28 @@ const userData={
   missingField:{
     password:'Pa$5w0rd'
    
-  }
+  },
+
+  resetLinkData:{
+    email: 'user15@gmail.com',
+   
+  },
+
+  invalidEmail:{
+    email: 'user11@gmail.com',
+  },
+  passwordData2: {
+    newPassword: 'Pa$6W0rd',
+    confirmPassword: 'Pa$6W0rd',
+  },
+  Missingpassword: {
+    newPassword: '',
+    confirmPassword: 'Pa$6W0rd',
+  },
+  Invalidpassword: {
+    newPassword: 'Pa$6W0re',
+    confirmPassword: 'Pa$6W0rd',
+  },
 
 }
 

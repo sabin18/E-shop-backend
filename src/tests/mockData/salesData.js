@@ -2,7 +2,7 @@ const salesData={
 
     validData:{
       product: 1,
-      quantity: 2,
+      quantity: 3,
       
     }, 
 

@@ -3,17 +3,25 @@ const strings ={
         success:{
             LOGIN_SUCCESS:'succesfully login',
             USER_ADDED:'user created successfully',
+            SUCCESS_VERIFIED:'You have been verifiyed',
+            SEND_EMAIL: 'please check your email to see the link for reseting password',
+            PASSWORD_CHANGED: 'password changed successfully',
             },
 
         error:{
         USER_NOT_FOUND:'can not find user with that email',
-        USER_NOT_EXIST:'can not find user',  
+        USER_NOT_EXIST:'user not found',  
         INCORRECT_PASSWORD:'incorrect password',
         UNVERIFIED: 'You are not verified ,verify first!',
         AUTHORIZED:`You don't have access to this page`,
         UNABLE_TO_PROCESS: 'Invalid token please sign again',
         SIGN_IN_FIRST: 'Please sign into the application first',
         USER_ALREADY_FOUND:'user with that ID or email already exist',
+        VERIFIED:'user already verified',
+        PASSWORD_NOT_MATCH: 'Password and Confirm Password do not match',
+        PASSWORD_ALREADY_EXISTS: 'you can not change password with old password',
+        INVALID_TOKEN: 'Invalid token',
+        EXPERED: 'Link expired request a new one',
         }
     },
 
@@ -82,6 +90,11 @@ const strings ={
         error:{
          EXPENSE_NOT_FOUND:'can not find  that exepense',
         }  
+},
+notifications:{
+    error:{
+     NOTIFICATION_NOT_FOUND:'notification not found',
+    }  
 }
 }
 

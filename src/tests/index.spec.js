@@ -8,6 +8,8 @@ import employeeTest from './employee.spec'
 import creditTest from './credits.spec'
 import debitsTest from './debits.spec'
 import expenseTest from './expenses.spec'
+import ResetPasswordTest from './ResetPassword.spec'
+
 
 
 describe('Admin Test', AdminTests);
@@ -19,4 +21,5 @@ describe ('payment Test',paymentTest);
 describe ('employee Test',employeeTest);
 describe ('creditTest',creditTest);
 describe ('debitsTest',debitsTest);
-describe ('expenseTest',expenseTest)
+describe ('expenseTest',expenseTest);
+describe ('ResetPasswordTest',ResetPasswordTest)
