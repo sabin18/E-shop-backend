@@ -51,7 +51,6 @@ it('user should not add product with the same name', done => {
       .get('/api/v1/products/d08a096f-6536-4507-aeca-f18f8234129f')
       .set('Authorization', `Bearer ${userToken}`)
       .end((error, res) => {
-        console.log(res.body);
          res.should.have.property('status').eql(200);
         done();
   });

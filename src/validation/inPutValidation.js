@@ -36,7 +36,8 @@ static validateLogin(req, res, next) {
       password: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/).message('password field should contain at least 6 characters, at least 1 lowercase, 1 uppercase and 1 number and a special character.').required(),
       ID: Joi.string().regex(/^\s*-?[0-9]{16,16}\s*$/).message('ID should be 16 numbers!').required(),
       phoneNumber:Joi.string().regex(/^\s*-?[0-9]{10,10}\s*$/).message('phoneNumber should be 10 numbers').required(),
-      role: Joi.number().integer().required(),     
+      role: Joi.number().integer().required(),  
+      host: Joi.string().uri().trim().message('host must be a valid URL'),   
     });
 
     validation(req, res, schema, next);
@@ -90,6 +91,21 @@ static validateCredits(req, res, next) {
   });
   validation(req, res, schema, next);
   
+}
+static validateResetpassword(req, res, next) {
+  const schema = Joi.object({
+    newPassword: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/).message('password field should contain at least 8 characters, at least 1 lowercase, 1 uppercase and 1 number and a special character.').required(),
+    confirmPassword: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/).message('confirmpassword field should contain at least 8 characters, at least 1 lowercase, 1 uppercase and 1 number and a special character.').required(),
+  });
+  validation(req, res, schema, next);
+}
+
+static validateEmail(req, res, next) {
+  const schema = Joi.object({
+    email: Joi.string().email({ minDomainSegments: 2 }).message('email field should be a valid email address. e.g: johndoe@gmail.com.').required(),
+    host: Joi.string().uri().trim().message('host must be a valid URL'),
+  });
+  validation(req, res, schema, next);
 }
 
 }

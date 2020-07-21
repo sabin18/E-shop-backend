@@ -2,6 +2,7 @@ import models from '../../database/models'
 import responseUtil from '../../Utils/responseUtil'
 import strings from '../../Utils/strings'
 import isMyBusiness from '../../helpers/checkBusiness'
+import sendNotification from '../../helpers/sendNotification'
 import { Op } from 'sequelize';
 import ip from 'ip';
 import moment from 'moment';
@@ -43,6 +44,8 @@ static async addCart(req,res) {
 static async addSales(req,res) {
 const {product,quantity}=req.body;
 const  { businessID } = req.params;
+const {id}=req.user.payload;
+const APP_URL = `${req.protocol}://${req.headers.host}`;
 
 await isMyBusiness(req,res);
 
@@ -67,6 +70,9 @@ if(checkProduct.quantity<quantity){
 const newQuantiy =checkProduct.quantity-quantity;
 await models.products.update({ quantity: newQuantiy },{where:{id:product}});
 await models.cart.destroy({ where:{ [Op.and]: [{productId:product}, {business:businessID},{ip:MyIp},{user:req.user.payload.id}]}});
+if(newQuantiy<=10){
+await sendNotification('reduced in stock of the product',product,businessID,id,APP_URL,`there is ${newQuantiy} ${checkProduct.name} remaing in stock`,'product','App','Email');
+}
 const newSales = await models.sales.bulkCreate(salesData);
 return response (res,201,strings.sales.success.SALES_CREATED,newSales);
 }
@@ -94,8 +100,8 @@ static async viewSales(req,res) {
 
 
 static async viewSingleSales(req,res) {
-    const  { businessID,id} = req.params;
-    await isMyBusiness(req,res);
+   const  { businessID,id} = req.params;
+   await isMyBusiness(req,res);
    const sales=await models.sales.findOne({where:{[Op.and]:[{business:businessID},{id}]},
         attributes: {exclude: ['user', 'business',]},
         include: [{ association: 'users',attributes: { exclude: ['password','role','createdAt','updatedAt'] },include: [{ association: 'roles', attributes: ['name'] }] },{ association: 'MyBusiness', attributes: ['name'] },{ association: 'product', attributes: { exclude: ['business','createdAt','updatedAt']}}],

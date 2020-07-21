@@ -3,6 +3,8 @@ import responseUtil from '../../Utils/responseUtil'
 import strings from '../../Utils/strings'
 import hashPassword from '../../utils/hashPassword';
 import { Op } from 'sequelize';
+import generateToken from '../../helpers/generateToken';
+import EmailHelper from '../../helpers/EmailHelper';
 
 
 const { ErrorResponse, response } = responseUtil;
@@ -16,7 +18,8 @@ static  async GetAllusers(req,res){
 }
 
 static async AddUser(req,res) {
-  const  {firstName,lastName,email,password,role,phoneNumber,ID} = req.body;
+  const  {firstName,lastName,email,password,role,phoneNumber,ID,host} = req.body;
+
   const user = await models.Users.findOne({ where:{ [Op.or]: [{email}, {ID}]}});
     if (user) {
     return  ErrorResponse (res,409,strings.users.error.USER_ALREADY_FOUND)
@@ -35,7 +38,19 @@ static async AddUser(req,res) {
       image:'',
       
    })
-   return response (res,200,strings.users.success.USER_ADDED,newUser)
+   const verifyToken = generateToken(newUser);
+   const APP_URL = host
+  ? `${host}/verify/${verifyToken}`
+  : `${req.protocol}://${req.headers.host}/api/v1/auth/users/verify${verifyToken}`;
+
+   await EmailHelper.AuthEmail('Account Verification',
+   email,firstName,
+   'Please verify your mail',
+   'verify your new account',
+   APP_URL,'Verify Account'
+   );
+      
+   return response (res,200,strings.users.success.USER_ADDED,newUser);
 }
 }
 

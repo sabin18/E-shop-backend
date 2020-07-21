@@ -29,6 +29,21 @@ module.exports = {
     image:'',
     createdAt: new Date(),
     updatedAt: new Date()
+  },
+
+  {
+    id:'6d4a21d6-f16b-4c26-9db0-acd29bdd4d23',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'user15@gmail.com',
+    password:'$2b$10$VyldWKIyiuVSqZYjmz4u8OepsFJFKzQipOQzhrhQKthgn8a9OI2Au',
+    role:2,
+    isVerified: false,
+    phoneNumber:7863123,
+    ID:12373676,
+    image:'',
+    createdAt: new Date(),
+    updatedAt: new Date()
   }
   
   ]);
