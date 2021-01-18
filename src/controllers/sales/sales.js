@@ -2,7 +2,7 @@ import models from '../../database/models'
 import responseUtil from '../../Utils/responseUtil'
 import strings from '../../Utils/strings'
 import isMyBusiness from '../../helpers/checkBusiness'
-import sendNotification from '../../helpers/sendNotification'
+import saveSales from  '../../helpers/recordSales';
 import { Op } from 'sequelize';
 import ip from 'ip';
 import moment from 'moment';
@@ -42,39 +42,16 @@ static async addCart(req,res) {
     }
 
 static async addSales(req,res) {
-const {product,quantity}=req.body;
-const  { businessID } = req.params;
-const {id}=req.user.payload;
-const APP_URL = `${req.protocol}://${req.headers.host}`;
-
-await isMyBusiness(req,res);
-
-const checkProduct = await models.products.findOne({ where:{ [Op.and]: [{id:product}, {business:businessID}]}});
-
-if (!checkProduct){
-   return  ErrorResponse(res,404,strings.product.error.PRODUCT_NOT_FOUND)
-}
-
-const salesData=[{
-    productId:product,
-    quantity:quantity,
-    price:quantity*checkProduct.price,
-    date:moment().format('YYYY-MM-DD HH:mm:ss'),
-    user:req.user.payload.id,
-    business:businessID 
-}];
-
-if(checkProduct.quantity<quantity){
-    return  ErrorResponse(res,400,strings.sales.error.QUANTITY_ERROR)
-}
-const newQuantiy =checkProduct.quantity-quantity;
-await models.products.update({ quantity: newQuantiy },{where:{id:product}});
-await models.cart.destroy({ where:{ [Op.and]: [{productId:product}, {business:businessID},{ip:MyIp},{user:req.user.payload.id}]}});
-if(newQuantiy<=10){
-await sendNotification('reduced in stock of the product',product,businessID,id,APP_URL,`there is ${newQuantiy} ${checkProduct.name} remaing in stock`,'product','App','Email');
-}
-const newSales = await models.sales.bulkCreate(salesData);
-return response (res,201,strings.sales.success.SALES_CREATED,newSales);
+    
+        const { salesRecords }=req.body;
+        const {businessID}=req.params;
+        const {id}=req.user.payload;
+        
+        await isMyBusiness(req,res);
+        
+        await Promise.all(salesRecords.map(async sales => {
+            await saveSales(res, req,sales, businessID,id);
+          }));
 }
 
 
